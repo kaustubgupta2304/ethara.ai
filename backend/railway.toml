@@ -5,7 +5,9 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "npx prisma migrate deploy && npm start"
+# Pre-deploy: Run migrations before start
+preDeployCommand = ["npx prisma migrate deploy"]
+startCommand = "npm start"
 healthcheckPath = "/api/health"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
