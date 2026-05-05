@@ -9,15 +9,38 @@ import { errorHandler } from "./middleware/errorHandler.js";
 const app = express();
 
 const allowedOrigins = process.env.CLIENT_ORIGIN
-  ? process.env.CLIENT_ORIGIN.split(",").map((s) => s.trim())
+  ? process.env.CLIENT_ORIGIN.split(",").map((s) => s.trim()).filter(Boolean)
   : ["http://localhost:5173"];
+
+const normalizedOrigins = allowedOrigins.map((origin) => {
+  try {
+    return new URL(origin).origin;
+  } catch {
+    return origin.toLowerCase();
+  }
+});
 
 app.use(
   cors({
     origin: (origin, cb) => {
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (!origin) {
         return cb(null, true);
       }
+
+      const requestOrigin = origin.toLowerCase();
+      if (normalizedOrigins.includes(requestOrigin)) {
+        return cb(null, true);
+      }
+
+      try {
+        const requestHostname = new URL(requestOrigin).hostname;
+        if (normalizedOrigins.includes(requestHostname)) {
+          return cb(null, true);
+        }
+      } catch {
+        // ignore invalid origin parsing
+      }
+
       return cb(null, false);
     },
     credentials: true,
