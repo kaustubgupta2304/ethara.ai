@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: teamtasks-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: teamtasks
+    ports:
+      - "5432:5432"
+    volumes:
+      - teamtasks_pgdata:/var/lib/postgresql/data
+
+volumes:
+  teamtasks_pgdata:

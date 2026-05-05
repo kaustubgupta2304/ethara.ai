@@ -1,0 +1,10 @@
+# Frontend on Railway — set Root Directory to `frontend` in the dashboard.
+# Required variable at build time: VITE_API_BASE_URL (your backend public URL, no trailing slash).
+
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "npm start"
+healthcheckPath = "/"
+healthcheckTimeout = 300
