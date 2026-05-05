@@ -5,6 +5,6 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "npm start"
+startCommand = "npm start --workspace=team-task-manager-web"
 healthcheckPath = "/"
 healthcheckTimeout = 300
