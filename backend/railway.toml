@@ -2,12 +2,12 @@
 # See RAILWAY_DEPLOY.md for full step-by-step deployment.
 
 [build]
-builder = "nixpacks"
+builder = "NIXPACKS"
 
 [deploy]
 # Pre-deploy: Run migrations before start
-preDeployCommand = ["npx prisma migrate deploy"]
+preDeployCommand = "npx prisma migrate deploy"
 startCommand = "npm start"
 healthcheckPath = "/api/health"
 healthcheckTimeout = 300
-restartPolicyType = "on_failure"
+restartPolicyType = "ON_FAILURE"

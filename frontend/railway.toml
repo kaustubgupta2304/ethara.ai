@@ -2,9 +2,9 @@
 # Required variable at build time: VITE_API_BASE_URL (your backend public URL, no trailing slash).
 
 [build]
-builder = "nixpacks"
+builder = "NIXPACKS"
 
 [deploy]
-startCommand = "npm start --workspace=team-task-manager-web"
+startCommand = "npm start"
 healthcheckPath = "/"
 healthcheckTimeout = 300

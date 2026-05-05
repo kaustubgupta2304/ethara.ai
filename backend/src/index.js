@@ -3,6 +3,6 @@ import app from "./app.js";
 
 const port = Number(process.env.PORT) || 4000;
 
-app.listen(port, () => {
-  console.log(`API listening on port ${port}`);
+app.listen(port, "0.0.0.0", () => {
+  console.log(`API listening on 0.0.0.0:${port}`);
 });

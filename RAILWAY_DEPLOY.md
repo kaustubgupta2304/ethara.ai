@@ -69,7 +69,8 @@ Do **not** expose the raw `DATABASE_URL` publicly in screenshots or GitHub issue
 
 6. Trigger a deploy (or wait for the first deploy to finish).  
    - The start command in `backend/railway.toml` is:  
-     `npx prisma migrate deploy && npm start`  
+     `npm start`  
+   - Migrations run automatically via `preDeployCommand`: `npx prisma migrate deploy`  
    - First deploy applies migrations in `backend/prisma/migrations/`.
 
 7. **Verify the API**
